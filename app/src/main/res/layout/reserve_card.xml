@@ -6,6 +6,58 @@
     android:layout_height="match_parent"
     android:background="#C3C3C3">
 
+    <TextView
+        android:id="@+id/textCPF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="CPF: "
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInsertEmail" />
+
+    <TextView
+        android:id="@+id/textInsertCPF"
+        android:layout_width="335dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="6dp"
+        android:background="#FFFFFF"
+        android:hint="Insira seu CPF"
+        android:textAlignment="viewStart"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textCPF" />
+
+    <TextView
+        android:id="@+id/textEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Email: "
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInsertName" />
+
+    <TextView
+        android:id="@+id/textInsertEmail"
+        android:layout_width="335dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="6dp"
+        android:background="#FFFFFF"
+        android:hint="Insira seu email"
+        android:textAlignment="viewStart"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textEmail" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="373dp"
@@ -15,13 +67,123 @@
         android:scrollbarStyle="insideOverlay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textRoomTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Horário da Sala 01"
+                android:textAlignment="center"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textTime1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="08:00 - 09:00"
+                android:textAlignment="center"
+                android:textColor="#009E1A"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textTime2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="09:00 - 10:00"
+                android:textAlignment="center"
+                android:textColor="#009E1A"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textTime3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#EDEDED"
+                android:text="10:00 - 11:00"
+                android:textAlignment="center"
+                android:textColor="#009E1A"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textTime4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="11:00 - 12:00"
+                android:textAlignment="center"
+                android:textColor="#009E1A"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textTime5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12:00 - 13:00"
+                android:textAlignment="center"
+                android:textColor="#009E1A"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textTime6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="13:00 - 14:00"
+                android:textAlignment="center"
+                android:textColor="#009E1A"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textTime7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="14:00 - 15:00"
+                android:textAlignment="center"
+                android:textColor="#009E1A"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textTime8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="15:00 - 16:00"
+                android:textAlignment="center"
+                android:textColor="#009E1A"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textTime9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="16:00 - 17:00"
+                android:textAlignment="center"
+                android:textColor="#009E1A"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textTime10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="17:00 - 18:00"
+                android:textAlignment="center"
+                android:textColor="#009E1A"
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
     <TextView
         android:id="@+id/textReserveRoom"
         android:layout_width="309dp"
         android:layout_height="51dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="22dp"
         android:text="Reserva Sala 01"
         android:textSize="40sp"
         android:textStyle="bold"
@@ -30,15 +192,40 @@
         app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
 
     <TextView
-        android:id="@+id/textNome"
+        android:id="@+id/textName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="16dp"
         android:text="Nome: "
         android:textSize="26sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textReserveRoom" />
+
+    <TextView
+        android:id="@+id/textInsertName"
+        android:layout_width="335dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="6dp"
+        android:background="#FFFFFF"
+        android:hint="Insira seu nome"
+        android:textAlignment="viewStart"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textName" />
+
+    <Button
+        android:id="@+id/buttonReserve"
+        android:layout_width="212dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="36dp"
+        android:text="RESERVAR"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInsertCPF" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
