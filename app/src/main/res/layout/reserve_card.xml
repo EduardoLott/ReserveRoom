@@ -221,11 +221,14 @@
         android:id="@+id/buttonReserve"
         android:layout_width="212dp"
         android:layout_height="71dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:text="RESERVAR"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInsertCPF" />
+        app:layout_constraintTop_toBottomOf="@+id/textInsertCPF"
+        app:layout_constraintVertical_bias="0.058" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
