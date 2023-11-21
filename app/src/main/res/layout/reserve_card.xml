@@ -185,6 +185,7 @@
         android:layout_width="309dp"
         android:layout_height="51dp"
         android:layout_marginTop="22dp"
+        android:fontFamily="@font/poppins_bold"
         android:text="Reserva Sala 01"
         android:textSize="40sp"
         android:textStyle="bold"
