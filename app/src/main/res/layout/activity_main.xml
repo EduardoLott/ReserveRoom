@@ -37,6 +37,7 @@
         android:layout_width="388dp"
         android:layout_height="57dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_bold"
         android:text="Salas da <Empresa>"
         android:textAlignment="center"
         android:textSize="36sp"
