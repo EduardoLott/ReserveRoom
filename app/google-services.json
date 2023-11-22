@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "907068665985",
+    "project_id": "reserveroommobile",
+    "storage_bucket": "reserveroommobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:907068665985:android:10e17b3761586c278a5d80",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvXhy7UAnZcIAJGFs6g8O1KffK6P3NeDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
