@@ -1,15 +1,30 @@
-package com.example.reserveroom
+import com.google.firebase.database.Exclude
+import com.google.firebase.firestore.IgnoreExtraProperties
+import java.util.HashMap
 
-class Schedules(
-    val time: String,
-    val id: String
-) {
-    val cpf: String = ""
-    val name: String = ""
-    val email: String = ""
+@IgnoreExtraProperties
+data class Schedules(
+    var time: String = "",
+    var cpf: String = "",
+    var name: String = "",
+    var email: String = "",
     var available: Boolean = true
+) {
+    // Id é uma propriedade mutável para que possa ser alterada pelo Firebase
+    var id: String? = null
 
-    override fun toString(): String {
-        return "ID: $id, Time: $time, Available: $available, CPF: $cpf, Name: $name, Email: $email"
+    // Construtor vazio necessário para usar o Firebase
+    constructor() : this("", "", "", "", true)
+
+    // Método para converter para mapa antes de enviar para o Firebase
+    @Exclude
+    fun toMap(): Map<String, Any?> {
+        val result = HashMap<String, Any?>()
+        result["time"] = time
+        result["cpf"] = cpf
+        result["name"] = name
+        result["email"] = email
+        result["available"] = available
+        return result
     }
 }
