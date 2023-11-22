@@ -6,65 +6,17 @@
     android:layout_height="match_parent"
     android:background="#C3C3C3">
 
-    <TextView
-        android:id="@+id/textCPF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="CPF: "
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInsertEmail" />
-
-    <TextView
-        android:id="@+id/textInsertCPF"
-        android:layout_width="335dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="6dp"
-        android:background="#FFFFFF"
-        android:hint="Insira seu CPF"
-        android:textAlignment="viewStart"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textCPF" />
-
-    <TextView
-        android:id="@+id/textEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="Email: "
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.114"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInsertName" />
-
-    <TextView
-        android:id="@+id/textInsertEmail"
-        android:layout_width="335dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="6dp"
-        android:background="#FFFFFF"
-        android:hint="Insira seu email"
-        android:textAlignment="viewStart"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textEmail" />
-
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="373dp"
-        android:layout_height="291dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/border_background"
         android:scrollbarStyle="insideOverlay"
+        app:layout_constraintBottom_toTopOf="@+id/formId"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -72,8 +24,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/border_background">
+            android:background="@drawable/border_background"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textRoomTime"
@@ -180,57 +132,141 @@
 
     </ScrollView>
 
-    <TextView
-        android:id="@+id/textReserveRoom"
-        android:layout_width="309dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="22dp"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Reserva Sala 01"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
-
-    <TextView
-        android:id="@+id/textName"
+    <LinearLayout
+        android:id="@+id/formId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Nome: "
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textReserveRoom" />
-
-    <TextView
-        android:id="@+id/textInsertName"
-        android:layout_width="335dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="6dp"
-        android:background="#FFFFFF"
-        android:hint="Insira seu nome"
-        android:textAlignment="viewStart"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textName" />
-
-    <Button
-        android:id="@+id/buttonReserve"
-        android:layout_width="212dp"
-        android:layout_height="71dp"
-        android:layout_marginTop="16dp"
-        android:text="RESERVAR"
-        android:textSize="24sp"
+        android:layout_marginTop="300dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInsertCPF"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:id="@+id/textReserveRoom"
+                android:layout_width="309dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Reserva Sala 1"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome: "
+                android:textColor="#000000"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/nameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:fontFamily="@font/poppins_bold"
+                android:hint="Insira seu nome:"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textAlignment="gravity"
+                android:textSize="21sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Email: "
+                android:textColor="#000000"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:fontFamily="@font/poppins_bold"
+                android:hint="Insira seu email:"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textAlignment="gravity"
+                android:textSize="21sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textCPF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="CPF: "
+                android:textColor="#000000"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/cpfEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:fontFamily="@font/poppins_bold"
+                android:hint="Insira seu CPF:"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:textAlignment="gravity"
+                android:textSize="21sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonReserve"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_register"
+                android:gravity="center"
+                android:text="RESERVAR"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
