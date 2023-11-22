@@ -7,6 +7,7 @@ import android.util.Log
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.firestore
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,8 +15,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         FirebaseApp.initializeApp(this)
         val db = Firebase.firestore
-
-        val room = Rooms()
+      
+      val room = Rooms()
 
         // Criar agendamentos (substitua isso com sua lógica)
         val schedule1 = Schedules("10:00", "123456789", "John Doe", "john@example.com", true)
@@ -30,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         // Adicionar os agendamentos à sala no Firestore
         room.addSchedulesToRoom()
         println("Agendamentos adicionados à sala com sucesso.")
-
 
     }
 }
