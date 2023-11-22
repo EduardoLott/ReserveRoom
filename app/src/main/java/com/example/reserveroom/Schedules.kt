@@ -1,6 +1,6 @@
-import com.google.firebase.database.Exclude
+package com.example.reserveroom
+
 import com.google.firebase.firestore.IgnoreExtraProperties
-import java.util.HashMap
 
 @IgnoreExtraProperties
 data class Schedules(
@@ -10,14 +10,11 @@ data class Schedules(
     var email: String = "",
     var available: Boolean = true
 ) {
-    // Id é uma propriedade mutável para que possa ser alterada pelo Firebase
-    var id: String? = null
 
     // Construtor vazio necessário para usar o Firebase
     constructor() : this("", "", "", "", true)
 
     // Método para converter para mapa antes de enviar para o Firebase
-    @Exclude
     fun toMap(): Map<String, Any?> {
         val result = HashMap<String, Any?>()
         result["time"] = time
