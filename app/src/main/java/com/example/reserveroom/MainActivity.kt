@@ -8,6 +8,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.firestore
 import android.widget.TextView
+import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,9 +19,10 @@ class MainActivity : AppCompatActivity() {
       
       val room = Rooms()
 
-        // Criar agendamentos (substitua isso com sua lógica)
-        val schedule1 = Schedules("10:00", "123456789", "John Doe", "john@example.com", true)
-        val schedule2 = Schedules("14:00", "987654321", "Jane Doe", "jane@example.com", true)
+        val today = LocalDate.now()
+        val schedule1 = Schedules("9:00", "123456789", "John Doe", "john@example.com", true, today)
+
+        val schedule2 = Schedules("14:00", "987654321", "Jane Doe", "jane@example.com", true, today)
 
         // Adicionar agendamentos à sala
         room.schedules = listOf(schedule1, schedule2)
