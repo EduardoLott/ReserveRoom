@@ -4,6 +4,6 @@
     <solid android:color="#c0c0c0" /> <!-- Cor de fundo -->
     <corners android:radius="20dp" /> <!-- Cantos arredondados, se desejar -->
     <stroke
-        android:width="2dp"
+        android:width="5dp"
         android:color="@color/black"></stroke>
 </shape>
