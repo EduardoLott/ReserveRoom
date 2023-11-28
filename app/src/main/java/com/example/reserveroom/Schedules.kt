@@ -11,11 +11,11 @@ data class Schedules(
     var name: String = "",
     var email: String = "",
     var available: Boolean = true,
-    var date: LocalDate
+    var date: String = ""
 ) {
 
     // Construtor vazio necessário para usar o Firebase
-    constructor() : this("", "", "", "", true, LocalDate.now())
+    constructor() : this("", "", "", "", true, "")
 
     // Método para converter para mapa antes de enviar para o Firebase
     fun toMap(): Map<String, Any?> {
