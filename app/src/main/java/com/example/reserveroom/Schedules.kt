@@ -25,7 +25,7 @@ data class Schedules(
         result["name"] = name
         result["email"] = email
         result["available"] = available
-        result["date"] = date.format(DateTimeFormatter.ISO_DATE)
+        result["date"] = date
         return result
     }
 }

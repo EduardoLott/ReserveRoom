@@ -11,6 +11,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.Query
 
 class ReserveActivity : AppCompatActivity() {
 
@@ -38,7 +39,68 @@ class ReserveActivity : AppCompatActivity() {
         val textReserveRoom = findViewById<TextView>(R.id.textReserveRoom)
         textReserveRoom.setText("Reserva Sala $roomId")
 
+        //Armazenar os horarios em string para enviar
 
+        val textTime1 = findViewById<TextView>(R.id.textTime1)
+        val textTime1String: String = textTime1.text.toString()
+
+        val textTime2 = findViewById<TextView>(R.id.textTime2)
+        val textTime2String: String = textTime2.text.toString()
+
+        val textTime3 = findViewById<TextView>(R.id.textTime3)
+        val textTime3String: String = textTime3.text.toString()
+
+        val textTime4 = findViewById<TextView>(R.id.textTime4)
+        val textTime4String: String = textTime4.text.toString()
+
+        val textTime5 = findViewById<TextView>(R.id.textTime5)
+        val textTime5String: String = textTime5.text.toString()
+
+        val textTime6 = findViewById<TextView>(R.id.textTime6)
+        val textTime6String: String = textTime6.text.toString()
+
+        val textTime7 = findViewById<TextView>(R.id.textTime7)
+        val textTime7String: String = textTime7.text.toString()
+
+        val textTime8 = findViewById<TextView>(R.id.textTime8)
+        val textTime8String: String = textTime8.text.toString()
+
+        val textTime9 = findViewById<TextView>(R.id.textTime9)
+        val textTime9String: String = textTime9.text.toString()
+
+        val textTime10 = findViewById<TextView>(R.id.textTime10)
+        val textTime10String: String = textTime10.text.toString()
+
+        val times = listOf(
+            textTime1String,
+            textTime2String,
+            textTime3String,
+            textTime4String,
+            textTime5String,
+            textTime6String,
+            textTime7String,
+            textTime8String,
+            textTime9String,
+            textTime10String
+        )
+
+        for (timeToCheck in times) {
+            val query = db.collection("rooms")
+                .document(roomId.toString())
+                .collection("schedules")
+                .whereArrayContains("schedules", mapOf("time" to timeToCheck))
+
+            query.get()
+                .addOnSuccessListener { documents ->
+                    Log.d("Consulta", "consultando o horario $timeToCheck")
+                    for (document in documents) {
+                        Log.d("Consulta", "Para o horário $timeToCheck, encontrou o schedule: ${document.id} => ${document.data}")
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    println("Erro ao buscar schedules para o horário $timeToCheck: $exception")
+                }
+        }
 
         // Inicialize os campos de entrada
         editTextName = findViewById(R.id.nameEditText)
