@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
@@ -30,6 +31,14 @@ class ReserveActivity : AppCompatActivity() {
 
         FirebaseApp.initializeApp(this)
         val db = Firebase.firestore
+
+        val textRoomTime = findViewById<TextView>(R.id.textRoomTime)
+        textRoomTime.setText("Horário da Sala $roomId")
+
+        val textReserveRoom = findViewById<TextView>(R.id.textReserveRoom)
+        textReserveRoom.setText("Reserva Sala $roomId")
+
+
 
         // Inicialize os campos de entrada
         editTextName = findViewById(R.id.nameEditText)
