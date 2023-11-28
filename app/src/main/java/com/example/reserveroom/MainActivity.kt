@@ -19,6 +19,7 @@ import java.util.Calendar
 class MainActivity : AppCompatActivity() {
 
     private val TAG = "MainActivity"
+    private var chosenDate: String = ""
 
     private lateinit var mDisplayDate: TextView
     private lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
@@ -55,9 +56,11 @@ class MainActivity : AppCompatActivity() {
 
                 val dateString = "$day/$formattedMonth/$year"
                 mDisplayDate.text = dateString
+
+                // Atualize a variável chosenDate aqui
+                chosenDate = dateString
             }
         }
-
 
         val buttonRoom1 = findViewById<Button>(R.id.Room1)
         val buttonRoom2 = findViewById<Button>(R.id.Room2)
@@ -66,57 +69,34 @@ class MainActivity : AppCompatActivity() {
         val buttonRoom5 = findViewById<Button>(R.id.Room5)
         val buttonRoom6 = findViewById<Button>(R.id.Room6)
 
-        val room = Rooms()
 
-        val today = LocalDate.now()
-        val schedule1 = Schedules("9:00", "123456789", "John Doe", "john@example.com", true, today)
-
-        val schedule2 = Schedules("14:00", "987654321", "Jane Doe", "jane@example.com", true, today)
-
-        // Adicionar agendamentos à sala
-        room.schedules = listOf(schedule1, schedule2)
-
-        // Adicionar a sala ao Firestore
-        room.addRoomToFirestore()
-
-        // Adicionar os agendamentos à sala no Firestore
-        room.addSchedulesToRoom()
-        println("Agendamentos adicionados à sala com sucesso.")
-
-
-
-        buttonRoom1.setOnClickListener() {
-            val intent = Intent(this, ReserveActivity::class.java)
-            Log.d("TEXT", "enttrou")
-            startActivity(intent)
+        buttonRoom1.setOnClickListener {
+            navigateToReserveActivity("1")
         }
-        buttonRoom2.setOnClickListener() {
-            val intent = Intent(this, ReserveActivity::class.java)
-            Log.d("TEXT", "enttrou")
-            startActivity(intent)
+        buttonRoom2.setOnClickListener {
+            navigateToReserveActivity("2")
         }
-        buttonRoom3.setOnClickListener() {
-            val intent = Intent(this, ReserveActivity::class.java)
-            Log.d("TEXT", "enttrou")
-            startActivity(intent)
+        buttonRoom3.setOnClickListener {
+            navigateToReserveActivity("3")
         }
-        buttonRoom4.setOnClickListener() {
-            val intent = Intent(this, ReserveActivity::class.java)
-            Log.d("TEXT", "enttrou")
-            startActivity(intent)
+        buttonRoom4.setOnClickListener {
+            navigateToReserveActivity("4")
         }
-        buttonRoom5.setOnClickListener() {
-            val intent = Intent(this, ReserveActivity::class.java)
-            Log.d("TEXT", "enttrou")
-            startActivity(intent)
+        buttonRoom5.setOnClickListener {
+            navigateToReserveActivity("5")
         }
-        buttonRoom6.setOnClickListener() {
-            val intent = Intent(this, ReserveActivity::class.java)
-            Log.d("TEXT", "enttrou")
-            startActivity(intent)
+        buttonRoom6.setOnClickListener {
+            navigateToReserveActivity("6")
         }
-
     }
 
+    private fun navigateToReserveActivity(roomId: String) {
+        Log.d(TAG, "Navigating to ReserveActivity with roomId: $roomId and chosenDate: $chosenDate")
+
+        val intent = Intent(this, ReserveActivity::class.java)
+        intent.putExtra("roomId", roomId)
+        intent.putExtra("chosenDate", chosenDate)
+        startActivity(intent)
+    }
 
 }
