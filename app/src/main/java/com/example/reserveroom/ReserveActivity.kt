@@ -1,8 +1,9 @@
 package com.example.reserveroom
 
-import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -96,10 +97,85 @@ class ReserveActivity : AppCompatActivity() {
                     }
             }
         }
+        
+        val textTime1 = findViewById<TextView>(R.id.textTime1)
+        val textTime2 = findViewById<TextView>(R.id.textTime2)
+        val textTime3 = findViewById<TextView>(R.id.textTime3)
+        val textTime4 = findViewById<TextView>(R.id.textTime4)
+        val textTime5 = findViewById<TextView>(R.id.textTime5)
+        val textTime6 = findViewById<TextView>(R.id.textTime6)
+        val textTime7 = findViewById<TextView>(R.id.textTime7)
+        val textTime8 = findViewById<TextView>(R.id.textTime8)
+        val textTime9 = findViewById<TextView>(R.id.textTime9)
+        val textTime10 = findViewById<TextView>(R.id.textTime10)
 
+        var textViewSelecionado: TextView? = null
 
+        val onClickListener = View.OnClickListener { view ->
+
+            textViewSelecionado?.setTextColor(Color.parseColor("#009E1A"))
+            textViewSelecionado?.setBackgroundColor(Color.WHITE)
+
+            (view as TextView).setBackgroundColor(Color.parseColor("#674aa3"))
+
+            textViewSelecionado = view
+
+            when (view.id){
+                R.id.textTime1 -> {
+                    val textS = (view as TextView).text.toString()
+                    Log.d("TIME", "tempo escolhido = $textS")
+                }
+                R.id.textTime2 -> {
+                    val textS = (view as TextView).text.toString()
+                    Log.d("TIME", "tempo escolhido = $textS")
+                }
+                R.id.textTime3 -> {
+                    val textS = (view as TextView).text.toString()
+                    Log.d("TIME", "tempo escolhido = $textS")
+                }
+                R.id.textTime4 -> {
+                    val textS = (view as TextView).text.toString()
+                    Log.d("TIME", "tempo escolhido = $textS")
+                }
+                R.id.textTime5 -> {
+                    val textS = (view as TextView).text.toString()
+                    Log.d("TIME", "tempo escolhido = $textS")
+                }
+                R.id.textTime6 -> {
+                    val textS = (view as TextView).text.toString()
+                    Log.d("TIME", "tempo escolhido = $textS")
+                }
+                R.id.textTime7 -> {
+                    val textS = (view as TextView).text.toString()
+                    Log.d("TIME", "tempo escolhido = $textS")
+                }
+                R.id.textTime8 -> {
+                    val textS = (view as TextView).text.toString()
+                    Log.d("TIME", "tempo escolhido = $textS")
+                }
+                R.id.textTime9 -> {
+                    val textS = (view as TextView).text.toString()
+                    Log.d("TIME", "tempo escolhido = $textS")
+                }
+                R.id.textTime10 -> {
+                    val textS = (view as TextView).text.toString()
+                    Log.d("TIME", "tempo escolhido = $textS")
+                }
+            }
+        }
+
+        textTime1.setOnClickListener(onClickListener)
+        textTime2.setOnClickListener(onClickListener)
+        textTime3.setOnClickListener(onClickListener)
+        textTime4.setOnClickListener(onClickListener)
+        textTime5.setOnClickListener(onClickListener)
+        textTime6.setOnClickListener(onClickListener)
+        textTime7.setOnClickListener(onClickListener)
+        textTime8.setOnClickListener(onClickListener)
+        textTime9.setOnClickListener(onClickListener)
+        textTime10.setOnClickListener(onClickListener)
     }
-
+    
 
     suspend fun buscando(roomId: String, chosenDate: String): List<String> {
         val db2 = FirebaseFirestore.getInstance()
@@ -161,7 +237,6 @@ class ReserveActivity : AppCompatActivity() {
             val cor = if (isExisting) R.color.red else R.color.green
             textView.setTextColor(ContextCompat.getColor(this, cor))
         }
-    }
 }
 
 

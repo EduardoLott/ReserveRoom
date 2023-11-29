@@ -22,9 +22,11 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/schedulesClickable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border_background"
+            android:clickable="true"
             android:orientation="vertical">
 
             <TextView
