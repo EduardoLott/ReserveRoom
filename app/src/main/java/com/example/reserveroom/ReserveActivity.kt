@@ -7,11 +7,19 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.tasks.await
 
 class ReserveActivity : AppCompatActivity() {
 
@@ -32,6 +40,8 @@ class ReserveActivity : AppCompatActivity() {
 
         FirebaseApp.initializeApp(this)
         val db = Firebase.firestore
+        val db2 = FirebaseFirestore.getInstance()
+        val collectionReference = db2.collection("rooms")
 
         val textRoomTime = findViewById<TextView>(R.id.textRoomTime)
         textRoomTime.setText("Horário da Sala $roomId")
@@ -84,22 +94,13 @@ class ReserveActivity : AppCompatActivity() {
             textTime10String
         )
 
-        for (timeToCheck in times) {
-            val query = db.collection("rooms")
-                .document(roomId.toString())
-                .collection("schedules")
-                .whereArrayContains("schedules", mapOf("time" to timeToCheck))
+        //val query = reference.get()
+        //Log.d("vamo ver", "eh pra voltar isso : $query")
 
-            query.get()
-                .addOnSuccessListener { documents ->
-                    Log.d("Consulta", "consultando o horario $timeToCheck")
-                    for (document in documents) {
-                        Log.d("Consulta", "Para o horário $timeToCheck, encontrou o schedule: ${document.id} => ${document.data}")
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    println("Erro ao buscar schedules para o horário $timeToCheck: $exception")
-                }
+        runBlocking {
+            launch(Dispatchers.IO){
+                buscando()
+            }
         }
 
         // Inicialize os campos de entrada
@@ -130,4 +131,30 @@ class ReserveActivity : AppCompatActivity() {
             }
         }
     }
+    suspend fun buscando() {
+        val db2 = FirebaseFirestore.getInstance()
+        val collectionReference = db2.collection("rooms")
+        val roomId = intent.getStringExtra("roomId")
+        val chosenDate : String= intent.getStringExtra("chosenDate")!!
+
+        try{
+            val querySnapshotTask: Task<QuerySnapshot> = collectionReference.get()
+            val querySnapshot = Tasks.await(querySnapshotTask)
+            for(document in querySnapshot.documents){
+                val schedules = document["schedules"] as List<Map<String, String>>?
+                Log.d("schedules", "schedules printando $schedules")
+                Log.d("documento", "documento printando $document")
+                schedules?.let {
+                    for(schedule in it){
+                        val time = schedule["time"]
+                        Log.d("printa ai", "printa o time $time")
+                    }
+                }
+            }
+        } catch (e: Exception){
+            Log.d("ERRO", "deu erro $e")
+        }
+    }
 }
+
+
