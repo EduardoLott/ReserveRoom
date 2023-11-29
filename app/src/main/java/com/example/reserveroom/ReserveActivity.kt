@@ -69,10 +69,54 @@ class ReserveActivity : AppCompatActivity() {
         editTextCpf = findViewById(R.id.cpfEditText)
         editTextEmail = findViewById(R.id.emailEditText)
 
+        
+        val textTime1 = findViewById<TextView>(R.id.textTime1)
+        val textTime2 = findViewById<TextView>(R.id.textTime2)
+        val textTime3 = findViewById<TextView>(R.id.textTime3)
+        val textTime4 = findViewById<TextView>(R.id.textTime4)
+        val textTime5 = findViewById<TextView>(R.id.textTime5)
+        val textTime6 = findViewById<TextView>(R.id.textTime6)
+        val textTime7 = findViewById<TextView>(R.id.textTime7)
+        val textTime8 = findViewById<TextView>(R.id.textTime8)
+        val textTime9 = findViewById<TextView>(R.id.textTime9)
+        val textTime10 = findViewById<TextView>(R.id.textTime10)
+
+        var textViewSelecionado: TextView? = null
+
+        var textS: String = ""
+
+        val onClickListener = View.OnClickListener { view ->
+            textViewSelecionado?.setTextColor(Color.parseColor("#009E1A"))
+            textViewSelecionado?.setBackgroundColor(Color.WHITE)
+
+            (view as TextView).setBackgroundColor(Color.parseColor("#674aa3"))
+
+            textViewSelecionado = view
+
+            // Atribuir o valor a textS dentro do when
+            when (view.id) {
+                R.id.textTime1, R.id.textTime2, R.id.textTime3, R.id.textTime4, R.id.textTime5,
+                R.id.textTime6, R.id.textTime7, R.id.textTime8, R.id.textTime9, R.id.textTime10 -> {
+                    textS = (view as TextView).text.toString()
+                    Log.d("TIME", "tempo escolhido = $textS")
+                }
+            }
+        }
+
+        textTime1.setOnClickListener(onClickListener)
+        textTime2.setOnClickListener(onClickListener)
+        textTime3.setOnClickListener(onClickListener)
+        textTime4.setOnClickListener(onClickListener)
+        textTime5.setOnClickListener(onClickListener)
+        textTime6.setOnClickListener(onClickListener)
+        textTime7.setOnClickListener(onClickListener)
+        textTime8.setOnClickListener(onClickListener)
+        textTime9.setOnClickListener(onClickListener)
+        textTime10.setOnClickListener(onClickListener)
 
         val buttonReserve = findViewById<Button>(R.id.buttonReserve)
         buttonReserve.setOnClickListener {
-            val time = "08:00 - 09:00"
+            val time = textS
             val name = editTextName.text.toString()
             val cpf = editTextCpf.text.toString()
             val email = editTextEmail.text.toString()
@@ -98,83 +142,6 @@ class ReserveActivity : AppCompatActivity() {
                     }
             }
         }
-        
-        val textTime1 = findViewById<TextView>(R.id.textTime1)
-        val textTime2 = findViewById<TextView>(R.id.textTime2)
-        val textTime3 = findViewById<TextView>(R.id.textTime3)
-        val textTime4 = findViewById<TextView>(R.id.textTime4)
-        val textTime5 = findViewById<TextView>(R.id.textTime5)
-        val textTime6 = findViewById<TextView>(R.id.textTime6)
-        val textTime7 = findViewById<TextView>(R.id.textTime7)
-        val textTime8 = findViewById<TextView>(R.id.textTime8)
-        val textTime9 = findViewById<TextView>(R.id.textTime9)
-        val textTime10 = findViewById<TextView>(R.id.textTime10)
-
-        var textViewSelecionado: TextView? = null
-
-        val onClickListener = View.OnClickListener { view ->
-
-            textViewSelecionado?.setTextColor(Color.parseColor("#009E1A"))
-            textViewSelecionado?.setBackgroundColor(Color.WHITE)
-
-            (view as TextView).setBackgroundColor(Color.parseColor("#674aa3"))
-
-            textViewSelecionado = view
-
-            when (view.id){
-                R.id.textTime1 -> {
-                    val textS = (view as TextView).text.toString()
-                    Log.d("TIME", "tempo escolhido = $textS")
-                }
-                R.id.textTime2 -> {
-                    val textS = (view as TextView).text.toString()
-                    Log.d("TIME", "tempo escolhido = $textS")
-                }
-                R.id.textTime3 -> {
-                    val textS = (view as TextView).text.toString()
-                    Log.d("TIME", "tempo escolhido = $textS")
-                }
-                R.id.textTime4 -> {
-                    val textS = (view as TextView).text.toString()
-                    Log.d("TIME", "tempo escolhido = $textS")
-                }
-                R.id.textTime5 -> {
-                    val textS = (view as TextView).text.toString()
-                    Log.d("TIME", "tempo escolhido = $textS")
-                }
-                R.id.textTime6 -> {
-                    val textS = (view as TextView).text.toString()
-                    Log.d("TIME", "tempo escolhido = $textS")
-                }
-                R.id.textTime7 -> {
-                    val textS = (view as TextView).text.toString()
-                    Log.d("TIME", "tempo escolhido = $textS")
-                }
-                R.id.textTime8 -> {
-                    val textS = (view as TextView).text.toString()
-                    Log.d("TIME", "tempo escolhido = $textS")
-                }
-                R.id.textTime9 -> {
-                    val textS = (view as TextView).text.toString()
-                    Log.d("TIME", "tempo escolhido = $textS")
-                }
-                R.id.textTime10 -> {
-                    val textS = (view as TextView).text.toString()
-                    Log.d("TIME", "tempo escolhido = $textS")
-                }
-            }
-        }
-
-        textTime1.setOnClickListener(onClickListener)
-        textTime2.setOnClickListener(onClickListener)
-        textTime3.setOnClickListener(onClickListener)
-        textTime4.setOnClickListener(onClickListener)
-        textTime5.setOnClickListener(onClickListener)
-        textTime6.setOnClickListener(onClickListener)
-        textTime7.setOnClickListener(onClickListener)
-        textTime8.setOnClickListener(onClickListener)
-        textTime9.setOnClickListener(onClickListener)
-        textTime10.setOnClickListener(onClickListener)
     }
     
 
