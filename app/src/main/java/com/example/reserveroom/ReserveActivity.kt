@@ -1,5 +1,6 @@
 package com.example.reserveroom
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -237,6 +238,8 @@ class ReserveActivity : AppCompatActivity() {
             val cor = if (isExisting) R.color.red else R.color.green
             textView.setTextColor(ContextCompat.getColor(this, cor))
         }
+    }
 }
+
 
 
