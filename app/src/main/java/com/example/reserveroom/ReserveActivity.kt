@@ -145,7 +145,7 @@ class ReserveActivity : AppCompatActivity() {
                                 .setMessage("O horário foi reservado com sucesso!.")
                                 .setPositiveButton("OK") { _, _ ->
                                     // Ação a ser realizada após o usuário clicar em "OK"
-                                    val intent = Intent(this, ReserveActivity::class.java)
+                                    val intent = Intent(this, MainActivity::class.java)
                                     intent.putExtra("roomId", roomId)
                                     intent.putExtra("chosenDate", chosenDate)
                                     startActivity(intent)
