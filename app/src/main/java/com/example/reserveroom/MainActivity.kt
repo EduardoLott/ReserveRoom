@@ -13,8 +13,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.firestore
-import java.time.LocalDate
+import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mDisplayDate: TextView
     private lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,12 +34,18 @@ class MainActivity : AppCompatActivity() {
 
         mDisplayDate = findViewById<TextView>(R.id.textInsertDate)
 
-        mDisplayDate.setOnClickListener { view ->
-            val cal = Calendar.getInstance()
-            val year = cal.get(Calendar.YEAR)
-            val month = cal.get(Calendar.MONTH)
-            val day = cal.get(Calendar.DAY_OF_MONTH)
+        // Obtém a data atual
+        val cal = Calendar.getInstance()
+        val year = cal.get(Calendar.YEAR)
+        val month = cal.get(Calendar.MONTH)
+        val day = cal.get(Calendar.DAY_OF_MONTH)
 
+        // Formata a data atual para exibição no TextView
+        val formattedMonth = month + 1
+        val dateString = "$day/$formattedMonth/$year"
+        mDisplayDate.text = dateString
+
+        mDisplayDate.setOnClickListener { view ->
             val dialog = DatePickerDialog(
                 this@MainActivity,
                 android.R.style.Theme_Holo_Light_Dialog_MinWidth,
@@ -45,6 +54,10 @@ class MainActivity : AppCompatActivity() {
                 month,
                 day
             )
+
+            // Configura o limite mínimo para a data atual
+            dialog.datePicker.minDate = cal.timeInMillis
+
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.show()
         }
@@ -68,7 +81,6 @@ class MainActivity : AppCompatActivity() {
         val buttonRoom4 = findViewById<Button>(R.id.Room4)
         val buttonRoom5 = findViewById<Button>(R.id.Room5)
         val buttonRoom6 = findViewById<Button>(R.id.Room6)
-
 
         buttonRoom1.setOnClickListener {
             navigateToReserveActivity("1")
@@ -98,5 +110,4 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("chosenDate", chosenDate)
         startActivity(intent)
     }
-
 }

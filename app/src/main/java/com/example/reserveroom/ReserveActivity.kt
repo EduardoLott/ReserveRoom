@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.gms.tasks.Task
@@ -35,8 +36,6 @@ class ReserveActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.reserve_card)
 
-        adicionarHorariosAoMapa()
-
         // Recupere os dados passados pela Intent
         val roomId = intent.getStringExtra("roomId")
         val chosenDate : String= intent.getStringExtra("chosenDate")!!
@@ -51,7 +50,7 @@ class ReserveActivity : AppCompatActivity() {
         val collectionReference = db2.collection("rooms")
 
         val textRoomTime = findViewById<TextView>(R.id.textRoomTime)
-        textRoomTime.setText("Horário da Sala $roomId")
+        textRoomTime.setText("Horários da Sala $roomId - $chosenDate")
 
         val textReserveRoom = findViewById<TextView>(R.id.textReserveRoom)
         textReserveRoom.setText("Reserva Sala $roomId")
@@ -86,7 +85,6 @@ class ReserveActivity : AppCompatActivity() {
         var textS: String = ""
 
         val onClickListener = View.OnClickListener { view ->
-            textViewSelecionado?.setTextColor(Color.parseColor("#009E1A"))
             textViewSelecionado?.setBackgroundColor(Color.WHITE)
 
             (view as TextView).setBackgroundColor(Color.parseColor("#674aa3"))
@@ -121,27 +119,76 @@ class ReserveActivity : AppCompatActivity() {
             val cpf = editTextCpf.text.toString()
             val email = editTextEmail.text.toString()
 
-            if (name.isNotEmpty() && cpf.isNotEmpty() && email.isNotEmpty()) {
-                val schedule = Schedules(time, name, cpf, email, false, chosenDate)
+            if (time.isEmpty()) {
+                // Exibir AlertDialog informando que é necessário selecionar um horário
+                val alertDialog = AlertDialog.Builder(this)
+                    .setTitle("Horário não selecionado")
+                    .setMessage("Por favor, selecione um horário antes de fazer a reserva.")
+                    .setPositiveButton("OK", null)
+                    .create()
 
-                // Adiciona a reserva ao Firestore
-                db.collection("rooms")
-                    .document(roomId.toString())
-                    .update("schedules", FieldValue.arrayUnion(schedule.toMap()))
-                    .addOnSuccessListener {
-                        println("Reserva adicionada com sucesso.")
+                alertDialog.show()
+            } else if (name.isNotEmpty() && isValidCPF(cpf) && isValidEmail(email)) {
+                // Verifica se o horário escolhido está marcado como vermelho (reservado)
+                val isReserved = findViewById<TextView>(textViewSelecionado?.id ?: 0).currentTextColor == ContextCompat.getColor(this, R.color.red)
 
-                        val intent = Intent(this, ReserveActivity::class.java)
-                        intent.putExtra("roomId", roomId)
-                        intent.putExtra("chosenDate", chosenDate)
-                        startActivity(intent)
-                        finish() // Isso encerra a atividade atual
-                    }
-                    .addOnFailureListener { e ->
-                        println("Erro ao adicionar reserva: $e")
-                    }
+                if (!isReserved) {
+                    val schedule = Schedules(time, name, cpf, email, false, chosenDate)
+
+                    // Adiciona a reserva ao Firestore
+                    db.collection("rooms")
+                        .document(roomId.toString())
+                        .update("schedules", FieldValue.arrayUnion(schedule.toMap()))
+                        .addOnSuccessListener {
+                            val alertDialog = AlertDialog.Builder(this)
+                                .setTitle("Horário Reservado")
+                                .setMessage("O horário foi reservado com sucesso!.")
+                                .setPositiveButton("OK") { _, _ ->
+                                    // Ação a ser realizada após o usuário clicar em "OK"
+                                    val intent = Intent(this, MainActivity::class.java)
+                                    intent.putExtra("roomId", roomId)
+                                    intent.putExtra("chosenDate", chosenDate)
+                                    startActivity(intent)
+                                    finish() // Isso encerra a atividade atual
+                                }
+                                .create()
+
+                            alertDialog.show()
+                        }
+                        .addOnFailureListener { e ->
+                            println("Erro ao adicionar reserva: $e")
+                        }
+                } else {
+                    // Exibir AlertDialog informando que o horário já está reservado
+                    val alertDialog = AlertDialog.Builder(this)
+                        .setTitle("Horário Reservado")
+                        .setMessage("Desculpe, o horário escolhido já está reservado.")
+                        .setPositiveButton("OK", null)
+                        .create()
+
+                    alertDialog.show()
+                }
+            } else {
+                // Exibir alerta indicando se o e-mail ou CPF são inválidos
+                val errorMessage = when {
+                    !isValidCPF(cpf) && !isValidEmail(email) -> "CPF e e-mail inválidos."
+                    !isValidCPF(cpf) -> "CPF inválido."
+                    else -> "E-mail inválido."
+                }
+
+                val alertDialog = AlertDialog.Builder(this)
+                    .setTitle("Dados Inválidos")
+                    .setMessage(errorMessage)
+                    .setPositiveButton("OK", null)
+                    .create()
+
+                alertDialog.show()
             }
         }
+
+
+
+
     }
     
 
@@ -177,22 +224,6 @@ class ReserveActivity : AppCompatActivity() {
         }
     }
 
-    private fun adicionarHorariosAoMapa() {
-        // Adicione todos os horários iniciais como disponíveis
-        statusMap["08:00 - 09:00"] = true
-        statusMap["09:00 - 10:00"] = true
-        statusMap["10:00 - 11:00"] = true
-        statusMap["11:00 - 12:00"] = true
-        statusMap["12:00 - 13:00"] = true
-        statusMap["13:00 - 14:00"] = true
-        statusMap["14:00 - 15:00"] = true
-        statusMap["15:00 - 16:00"] = true
-        statusMap["16:00 - 17:00"] = true
-        statusMap["17:00 - 18:00"] = true
-
-        // Adicione os demais horários conforme necessário
-    }
-
     private fun atualizarCoresDosHorarios(horariosExistentes: List<String>) {
         // Atualize as cores dos TextViews com base nos horários existentes
         // Exemplo: percorra todos os TextViews e defina a cor com base na existência na lista
@@ -206,7 +237,16 @@ class ReserveActivity : AppCompatActivity() {
             textView.setTextColor(ContextCompat.getColor(this, cor))
         }
     }
+
+    // Função para verificar se o CPF é válido
+    private fun isValidCPF(cpf: String): Boolean {
+        return cpf.length == 11
+    }
+
+    // Função para verificar se o e-mail é válido
+    private fun isValidEmail(email: String): Boolean {
+        // Adicione aqui a lógica para validar o e-mail conforme necessário
+        // Por exemplo, você pode usar regex ou outras verificações
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
 }
-
-
-
