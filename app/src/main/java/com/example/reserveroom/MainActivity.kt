@@ -45,6 +45,9 @@ class MainActivity : AppCompatActivity() {
         val dateString = "$day/$formattedMonth/$year"
         mDisplayDate.text = dateString
 
+        // Inicializa a variável chosenDate com a data atual formatada
+        chosenDate = dateString
+
         mDisplayDate.setOnClickListener { view ->
             val dialog = DatePickerDialog(
                 this@MainActivity,
